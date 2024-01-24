@@ -15,6 +15,6 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
     Optional<List<Cart>> findUserCart(Long userId);
 
     @Query("select c from Cart c inner join c.appUser a INNER JOIN c.gadget g where a.id=?1 AND g.id=?2")
-    Optional<Cart> deleteByAppUserAndGadget(Long userId, Long gadgetId);
+    Optional<Cart> getByAppUserAndGadget(Long userId, Long gadgetId);
 
 }

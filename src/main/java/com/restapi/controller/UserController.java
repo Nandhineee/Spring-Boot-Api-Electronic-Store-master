@@ -41,6 +41,8 @@ public class UserController {
     public ResponseEntity<APIResponse> createAddress(@RequestBody
                                                      AddressRequest addressRequest) {
         AddressResponse addressResponse = addressService.create(addressRequest);
+        System.out.println(addressResponse.getAddressList() );
+        System.out.println("nandhini");
         apiResponse.setStatus(HttpStatus.OK.value());
         apiResponse.setData(addressResponse.getAddressList());
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);

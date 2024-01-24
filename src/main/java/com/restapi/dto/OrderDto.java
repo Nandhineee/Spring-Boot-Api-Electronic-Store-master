@@ -18,6 +18,30 @@ public class OrderDto {
     @Autowired
     private OrderedGadgetRepository orderedGadgetRepository;
 
+//    public List<OrderResponse> mapToOrderResponse(List<Order> orderList) {
+//        List<OrderResponse> orderResponseList = new ArrayList<>();
+//        for (Order order : orderList) {
+//            OrderResponse orderResponse = new OrderResponse();
+//            orderResponse.setId(order.getId());
+//            orderResponse.setUserId(order.getAppUser().getId());
+//            orderResponse.setName(order.getAppUser().getName());
+//            orderResponse.setUsername(order.getAppUser().getUsername());
+//            orderResponse.setOrderStatus(order.getOrderStatus().getStatus());
+//            orderResponse.setAddress(order.getAddress().getAddress());
+//            orderResponse.setCity(order.getAddress().getCity());
+//            orderResponse.setPincode(order.getAddress().getPincode());
+//
+//
+//
+//            System.out.println(order.getAddress().getAddress());
+////            List<OrderedGadget> orderedGadgets=orderedGadgetRepository.findByOrderId(order.getId());
+////            orderResponse.setGadgetList(orderedGadgets);
+//            orderResponse.setGadgetList(order.getOrderedGadget());
+//            orderResponseList.add(orderResponse);
+//        }
+//        return orderResponseList;
+//    }
+
     public List<OrderResponse> mapToOrderResponse(List<Order> orderList) {
         List<OrderResponse> orderResponseList = new ArrayList<>();
         for (Order order : orderList) {
@@ -26,6 +50,7 @@ public class OrderDto {
             orderResponse.setUserId(order.getAppUser().getId());
             orderResponse.setName(order.getAppUser().getName());
             orderResponse.setUsername(order.getAppUser().getUsername());
+            orderResponse.setOrderStatusId(order.getOrderStatus().getId());
             orderResponse.setOrderStatus(order.getOrderStatus().getStatus());
             orderResponse.setAddress(order.getAddress());
 //            List<OrderedGadget> orderedGadgets=orderedGadgetRepository.findByOrderId(order.getId());
@@ -35,6 +60,9 @@ public class OrderDto {
         }
         return orderResponseList;
     }
+
+
+
     public List<OrderResponse> mapToOrder(List<Order> orderList,Long userId) {
         List<OrderResponse> orderResponseList = new ArrayList<>();
 
@@ -46,7 +74,7 @@ public class OrderDto {
                 orderResponse.setName(order.getAppUser().getName());
                 orderResponse.setUsername(order.getAppUser().getUsername());
                 orderResponse.setOrderStatus(order.getOrderStatus().getStatus());
-                orderResponse.setAddress(order.getAddress());
+    //                orderResponse.setAddress(order.getAddress());
                 List<OrderedGadget> orderedGadgets=orderedGadgetRepository.findByOrderId(order.getId());
                 orderResponse.setGadgetList(orderedGadgets);
                 orderResponseList.add(orderResponse);

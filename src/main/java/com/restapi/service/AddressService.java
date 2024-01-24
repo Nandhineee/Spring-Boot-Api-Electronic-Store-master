@@ -33,6 +33,8 @@ public class AddressService {
     @Transactional
     public AddressResponse create(AddressRequest addressRequest) {
         Address address = addressDto.mapToAddress(addressRequest);
+        System.out.println(address.getPhonenumber());
+        System.out.println("Nandhini service");
         AppUser appUser = userRepository.findById(addressRequest.getUserId())
                 .orElseThrow(() -> new ResourceNotFoundException("userId", "userId",
                         addressRequest.getUserId()));

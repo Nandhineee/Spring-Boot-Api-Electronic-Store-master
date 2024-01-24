@@ -21,14 +21,17 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 200)
+
     private String address;
 
-    @Column(nullable = false, length = 200)
     private String city;
 
-    @Column(nullable = false, length = 200)
+
     private Integer pincode;
+
+
+    private Integer phonenumber;
+
 
     @JsonIgnore
     @ManyToOne

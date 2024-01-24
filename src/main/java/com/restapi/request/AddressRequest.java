@@ -16,12 +16,13 @@ public class AddressRequest {
 
     private Long id;
     private Long userId;
-    @NotBlank(message = "city is mandatory")
     private String address;
 
-    @NotBlank(message = "city is mandatory")
+
     private String city;
 
-    @Size(min = 2, max = 6)
-    private Integer zipcode;
+
+    private Integer pincode;
+
+    private Integer phonenumber;
 }

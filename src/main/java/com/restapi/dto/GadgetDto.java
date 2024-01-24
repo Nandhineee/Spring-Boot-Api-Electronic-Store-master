@@ -11,11 +11,11 @@ import java.util.List;
 @Component
 public class GadgetDto {
 
-    public GadgetResponse mapToBookResponse(List<Gadget> gadgetList) {
+    public GadgetResponse mapToGadgetResponse(List<Gadget> gadgetList) {
         return new GadgetResponse(gadgetList);
     }
 
-    public Gadget mapToBook(GadgetRequest gadgetRequest) {
+    public Gadget mapToGadget(GadgetRequest gadgetRequest) {
         Gadget gadget = new Gadget();
         if (gadgetRequest.getId() != null) {
             gadget.setId(gadgetRequest.getId());
@@ -23,7 +23,8 @@ public class GadgetDto {
         gadget.setPrice(gadgetRequest.getPrice());
         gadget.setDescription(gadgetRequest.getDescription());
         gadget.setTitle(gadgetRequest.getTitle());
-       // gadget.setPhoto(bookRequest.getPhoto());
+        gadget.setStock(gadgetRequest.getStock());
+        gadget.setPhoto(gadgetRequest.getPhoto());
         return gadget;
     }
 }

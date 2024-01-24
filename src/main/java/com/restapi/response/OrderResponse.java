@@ -22,5 +22,8 @@ public class OrderResponse {
     private String name;
     private String username;
     private Address address;
+    private String city;
+    private int pincode;
+    private Long orderStatusId;
     private String orderStatus;
 }

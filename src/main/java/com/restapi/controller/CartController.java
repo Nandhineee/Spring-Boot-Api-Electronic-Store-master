@@ -37,6 +37,18 @@ public class CartController {
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
+
+
+    @GetMapping("/count")
+    public ResponseEntity<APIResponse> getCartCount(@PathVariable Long userId) {
+        apiResponse.setStatus(HttpStatus.OK.value());
+        apiResponse.setData(cartService.getCartCount());
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+
+
+
+
     @PostMapping
     public ResponseEntity<APIResponse> addToCart(@Valid @RequestBody CartRequest cartRequest) {
         List<CartResponse> cartResponseList=cartService.addToCart(cartRequest);

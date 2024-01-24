@@ -17,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -39,10 +41,9 @@ public class CartService {
         Gadget gadget = gadgetRepository.findById(cartRequest.getGadgetId())
                 .orElseThrow(() -> new ResourceNotFoundException("gadgetId", "gadgetId", cartRequest.getGadgetId()));//productid
 
-        Optional<Cart> cartOptional = cartRepository.deleteByAppUserAndGadget(appUser.getId(), gadget.getId());//for query
+        Optional<Cart> cartOptional = cartRepository.getByAppUserAndGadget(appUser.getId(), gadget.getId());//for query
 
         if (cartOptional.isPresent()) {
-            System.out.println("optional Cart Came" + cartOptional);
             Cart cart = new Cart();
             System.out.println(cartOptional.get().getId());
             cart.setId(cartOptional.get().getId());
@@ -55,7 +56,6 @@ public class CartService {
             }
             cartRepository.save(cart);
         } else {
-            System.out.println("good");
             System.out.println("else block came");
             Cart cart = new Cart();
             cart.setAppUser(appUser);
@@ -98,8 +98,15 @@ public class CartService {
     }
 
     public List<CartResponse> deleteGadgetFromCart(Long userId, Long gadgetId) {
-        Optional<Cart> optionalCart = cartRepository.deleteByAppUserAndGadget(userId, gadgetId);
+        Optional<Cart> optionalCart = cartRepository.getByAppUserAndGadget(userId,gadgetId);
         cartRepository.deleteById(optionalCart.get().getId());
         return findUserCart(userId);
     }
+
+    private final Map<String, Integer> cartItems = new HashMap<>();
+
+    public int getCartCount() {
+        return cartItems.values().stream().mapToInt(Integer::intValue).sum();
+    }
+
 }

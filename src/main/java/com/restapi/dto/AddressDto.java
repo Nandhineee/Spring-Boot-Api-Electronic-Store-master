@@ -20,7 +20,9 @@ public class AddressDto {
         }
         address.setAddress(addressRequest.getAddress());
         address.setCity(addressRequest.getCity());
-        address.setPincode(addressRequest.getZipcode());
+        address.setPincode(addressRequest.getPincode());
+        address.setPhonenumber(addressRequest.getPhonenumber());
+        System.out.println(addressRequest.getPhonenumber());
         return address;
     }
 }
